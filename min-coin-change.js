@@ -16,7 +16,10 @@ const getMinCoinsNumber = (denominations, total) => {
 
     let minCoinsNumber1 = Infinity;
     if (denominations[curIndex] <= total) {
-      minCoinsNumber1 = 1 + backtrack(denominations, total - denominations[curIndex], curIndex);
+      const res = backtrack(denominations, total - denominations[curIndex], curIndex);
+      if (res !== Infinity) {
+        minCoinsNumber1 = 1 + res;
+      }
     }
     const minCoinsNumber2 = backtrack(denominations, total, curIndex + 1);
 
