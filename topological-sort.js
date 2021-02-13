@@ -1,4 +1,4 @@
-const topologicalSort = (vertices, edges) => {
+const topologicalSortByDFS = (vertices, edges) => {
   const visited = new Array(vertices).fill(0);
   const adjMap = new Map();
   const topOrder = [];
@@ -29,4 +29,4 @@ const topologicalSort = (vertices, edges) => {
   }
 };
 
-export default topologicalSort;
+export { topologicalSortByDFS };
