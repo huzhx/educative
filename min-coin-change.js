@@ -73,4 +73,27 @@ const bottomUp = (denominations, total) => {
   return output === Infinity ? -1 : output;
 };
 
-export { getMinCoinsNumber, topDown, bottomUp };
+const greedy = (coins, amount) => {
+  coins.sort((a, b) => b - a);
+  let min = Infinity;
+  backtrack(0, amount, 0);
+  return min === Infinity ? -1 : min;
+
+  function backtrack(curIndex, amount, curCount) {
+    const coin = coins[curIndex];
+
+    if (curIndex === coins.length - 1) {
+      if (amount % coin === 0) {
+        curCount += amount / coin;
+        min = Math.min(min, curCount);
+        return;
+      }
+    } else {
+      for (let k = Math.floor(amount / coin); k >= 0 && k + curCount < min; k--) {
+        backtrack(curIndex + 1, amount - k * coin, curCount + k);
+      }
+    }
+  }
+};
+
+export { getMinCoinsNumber, topDown, bottomUp, greedy };
