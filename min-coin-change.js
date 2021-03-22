@@ -28,4 +28,30 @@ const getMinCoinsNumber = (denominations, total) => {
   }
 };
 
-export default getMinCoinsNumber;
+const topDown = (denominations, total) => {
+  const memo = [];
+  const output = helper(denominations, total);
+  return output === Infinity ? -1 : output;
+
+  function helper(denominations, total) {
+    if (total === 0) return 0;
+    if (total < 0) return Infinity;
+
+    if (typeof memo[total] !== 'undefined') {
+      return memo[total];
+    }
+
+    let minCoinCount = Infinity;
+    for (let denomination of denominations) {
+      const coinCount = 1 + helper(denominations, total - denomination);
+      minCoinCount = Math.min(minCoinCount, coinCount);
+    }
+
+    memo[total] = minCoinCount;
+    return memo[total];
+  }
+};
+
+const bottomUp = (denominations, total) => {};
+
+export { getMinCoinsNumber, topDown, bottomUp };
