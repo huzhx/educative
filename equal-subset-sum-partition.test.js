@@ -1,4 +1,4 @@
-const canPartition = require('./equal-subset-sum-partition');
+import { canPartition } from './equal-subset-sum-partition';
 
 test('test1', () => {
   const nums = [1, 2, 3, 4];

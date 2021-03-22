@@ -20,4 +20,4 @@ const canPartition = (nums) => {
   }
 };
 
-module.exports = canPartition;
+export { canPartition };
