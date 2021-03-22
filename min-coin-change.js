@@ -52,6 +52,25 @@ const topDown = (denominations, total) => {
   }
 };
 
-const bottomUp = (denominations, total) => {};
+const bottomUp = (denominations, total) => {
+  const dp = new Array(denominations.length).fill(null).map((_) => new Array(total + 1).fill(Infinity));
+  for (let i = 0; i < dp.length; i++) {
+    for (let j = 0; j < dp[i].length; j++) {
+      if (j === 0) {
+        dp[i][j] = 0;
+      } else {
+        if (i > 0) {
+          dp[i][j] = dp[i - 1][j];
+        }
+        if (j >= denominations[i]) {
+          dp[i][j] = Math.min(dp[i][j], dp[i][j - denominations[i]] + 1);
+        }
+      }
+    }
+  }
+
+  const output = dp[denominations.length - 1][total];
+  return output === Infinity ? -1 : output;
+};
 
 export { getMinCoinsNumber, topDown, bottomUp };
