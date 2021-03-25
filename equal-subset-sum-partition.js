@@ -20,4 +20,32 @@ const canPartition = (nums) => {
   }
 };
 
-export { canPartition };
+const topDown = (nums) => {
+  const total = nums.reduce((a, b) => a + b, 0);
+  if (total % 2 !== 0) return false;
+  const target = total / 2;
+  const memo = [];
+  return helper(nums, 0, target);
+
+  function helper(nums, curIndex, target) {
+    if (target === 0) return true;
+    if (curIndex >= nums.length) return false;
+
+    memo[curIndex] = memo[curIndex] || [];
+    if (typeof memo[curIndex][target] !== 'undefined') {
+      return memo[curIndex][target];
+    }
+
+    let option1 = false;
+    if (nums[curIndex] <= target) {
+      option1 = helper(nums, curIndex + 1, target - nums[curIndex]);
+    }
+
+    const option2 = helper(nums, curIndex + 1, target);
+
+    memo[curIndex][target] = option1 || option2;
+    return memo[curIndex][target];
+  }
+};
+
+export { canPartition, topDown };
