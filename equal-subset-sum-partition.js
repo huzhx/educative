@@ -48,4 +48,27 @@ const topDown = (nums) => {
   }
 };
 
-export { canPartition, topDown };
+const bottomUp = (nums) => {
+  const total = nums.reduce((a, b) => a + b, 0);
+  if (total % 2 !== 0) return false;
+  const target = total / 2;
+
+  const dp = new Array(nums.length).fill(null).map((_) => new Array(target + 1).fill(false));
+  for (let i = 0; i < dp.length; i++) {
+    dp[i][0] = true;
+  }
+  for (let s = 1; s <= target; s++) {
+    dp[0][s] = nums[0] === s;
+  }
+  for (let i = 1; i < dp.length; i++) {
+    for (let j = 1; j < dp[i].length; j++) {
+      dp[i][j] = dp[i - 1][j];
+      if (j >= nums[i]) {
+        dp[i][j] = dp[i][j] || dp[i - 1][j - nums[i]];
+      }
+    }
+  }
+  return dp[nums.length - 1][target];
+};
+
+export { canPartition, topDown, bottomUp };
