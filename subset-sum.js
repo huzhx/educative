@@ -18,4 +18,4 @@ const subsetSum = (nums, sum) => {
   }
 };
 
-module.exports = subsetSum;
+export { subsetSum };

@@ -1,5 +1,4 @@
-const { expect } = require('@jest/globals');
-const subsetSum = require('./subset-sum');
+import { subsetSum } from './subset-sum';
 
 test('test1', () => {
   const input = [1, 2, 3, 7];
