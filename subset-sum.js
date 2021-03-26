@@ -37,4 +37,20 @@ const bottomUp = (nums, sum) => {
   return dp[nums.length - 1][sum];
 };
 
-export { subsetSum, bottomUp };
+const bottomUpSpaceOptimization = (nums, sum) => {
+  const dp = new Array(sum + 1).fill(false);
+  dp[0] = true;
+  for (let s = 1; s <= sum; s++) {
+    dp[s] = nums[0] === s;
+  }
+  for (let i = 1; i < nums.length; i++) {
+    for (let s = sum; s >= 0; s--) {
+      if (!dp[s] && nums[i] <= s) {
+        dp[s] = dp[s - nums[i]];
+      }
+    }
+  }
+  return dp[sum];
+};
+
+export { subsetSum, bottomUp, bottomUpSpaceOptimization };
