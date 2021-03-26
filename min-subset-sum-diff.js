@@ -19,4 +19,4 @@ const getMinDiff = (nums) => {
   }
 };
 
-module.exports = getMinDiff;
+export { getMinDiff };

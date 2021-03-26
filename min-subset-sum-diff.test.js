@@ -1,4 +1,4 @@
-const getMinDiff = require('./min-subset-sum-diff');
+import { getMinDiff } from './min-subset-sum-diff';
 
 test('test1', () => {
   const nums = [1, 2, 3, 9];
