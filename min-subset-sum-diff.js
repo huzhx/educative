@@ -42,4 +42,34 @@ const topDown = (nums) => {
   }
 };
 
-export { getMinDiff, topDown };
+const bottomUp = (nums) => {
+  const total = nums.reduce((a, b) => a + b, 0);
+  const target = Math.floor(total / 2);
+  const dp = new Array(nums.length).fill(null).map((_) => new Array(target + 1));
+
+  for (let i = 0; i < nums.length; i++) {
+    dp[i][0] = true;
+  }
+
+  for (let s = 1; s <= target; s++) {
+    dp[0][s] = nums[0] === s;
+  }
+
+  for (let i = 1; i < nums.length; i++) {
+    for (let s = 1; s <= target; s++) {
+      if (dp[i - 1][s]) {
+        dp[i][s] = dp[i - 1][s];
+      } else if (s >= nums[i]) {
+        dp[i][s] = dp[i - 1][s - nums[i]];
+      }
+    }
+  }
+
+  for (let s = target; s >= 0; s--) {
+    if (dp[nums.length - 1][s]) {
+      return total - 2 * s;
+    }
+  }
+};
+
+export { getMinDiff, topDown, bottomUp };
