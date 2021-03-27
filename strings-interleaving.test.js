@@ -1,4 +1,4 @@
-import { isInterleaved } from './strings-interleaving';
+import { isInterleaved, topDown } from './strings-interleaving';
 
 test('test1', () => {
   const m = 'abd';
@@ -45,5 +45,53 @@ test('test6', () => {
   const n = 'aaabaa';
   const p = 'aabbaaaaba';
   const result = isInterleaved(m, n, p);
+  expect(result).toBeFalsy();
+});
+
+test('test-topDown-1', () => {
+  const m = 'abd';
+  const n = 'cef';
+  const p = 'abcdef';
+  const result = topDown(m, n, p);
+  expect(result).toBeTruthy();
+});
+
+test('test-topDown-2', () => {
+  const m = 'abd';
+  const n = 'cef';
+  const p = 'adcbef';
+  const result = topDown(m, n, p);
+  expect(result).toBeFalsy();
+});
+
+test('test-topDown-3', () => {
+  const m = 'abc';
+  const n = 'def';
+  const p = 'abdccf';
+  const result = topDown(m, n, p);
+  expect(result).toBeFalsy();
+});
+
+test('test-topDown-4', () => {
+  const m = 'abcdef';
+  const n = 'mnop';
+  const p = 'mnaobcdepf';
+  const result = topDown(m, n, p);
+  expect(result).toBeTruthy();
+});
+
+test('test-topDown-5', () => {
+  const m = 'aba';
+  const n = 'aaabaa';
+  const p = 'aabaabaaa';
+  const result = topDown(m, n, p);
+  expect(result).toBeTruthy();
+});
+
+test('test-topDown-6', () => {
+  const m = 'aba';
+  const n = 'aaabaa';
+  const p = 'aabbaaaaba';
+  const result = topDown(m, n, p);
   expect(result).toBeFalsy();
 });
