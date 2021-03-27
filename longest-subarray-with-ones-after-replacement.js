@@ -38,4 +38,30 @@ const topDown = (arr, k) => {
   }
 };
 
-export { topDown };
+const greedy = (arr, k) => {
+  let start = 0;
+  let maxLen = 0;
+  let replacements = 0;
+
+  for (let end = start; end < arr.length; end++) {
+    if (arr[end] === 1) {
+      // cur is 1
+      maxLen = Math.max(maxLen, end - start + 1);
+    } else {
+      // cur is 0
+      while (replacements === k) {
+        const startVal = arr[start];
+        if (startVal === 0) {
+          replacements--;
+        }
+        start++;
+      }
+      replacements++;
+      maxLen = Math.max(maxLen, end - start + 1);
+    }
+  }
+
+  return maxLen;
+};
+
+export { topDown, greedy };
