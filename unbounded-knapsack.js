@@ -74,4 +74,23 @@ const topDown = (items, weights, profits, capacity) => {
   }
 };
 
-export { getMaxProfitCombination, topDown };
+const bottomUp = (items, weights, profits, capacity) => {
+  const dp = new Array(items.length).fill(null).map((_) => new Array(capacity + 1).fill(0));
+
+  for (let i = 0; i < items.length; i++) {
+    for (let c = 1; c <= capacity; c++) {
+      let profit1 = 0;
+      let profit2 = 0;
+      if (weights[i] <= c) {
+        profit1 = profits[i] + dp[i][c - weights[i]];
+      }
+      if (i > 0) {
+        profit2 = dp[i - 1][c];
+      }
+      dp[i][c] = Math.max(profit1, profit2);
+    }
+  }
+  return dp[items.length - 1][capacity];
+};
+
+export { getMaxProfitCombination, topDown, bottomUp };
