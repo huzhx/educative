@@ -65,4 +65,28 @@ const topDown = (m, n, p) => {
   }
 };
 
-export { isInterleaved, topDown };
+const bottomUp = (m, n, p) => {
+  const dp = new Array(m.length + 1).fill(null).map((_) => new Array(n.length + 1).fill(false));
+  dp[0][0] = true;
+  if (m.length + n.length !== p.length) return false;
+
+  for (let i = 1; i <= m.length; i++) {
+    dp[i][0] = m[i - 1] === p[i - 1];
+  }
+  for (let j = 1; j <= n.length; j++) {
+    dp[0][j] = n[j - 1] === p[j - 1];
+  }
+  for (let i = 1; i <= m.length; i++) {
+    for (let j = 1; j <= n.length; j++) {
+      if (p[i + j - 1] === m[i - 1]) {
+        dp[i][j] = dp[i - 1][j];
+      }
+      if (p[i + j - 1] === n[j - 1]) {
+        dp[i][j] = dp[i][j] || dp[i][j - 1];
+      }
+    }
+  }
+  return dp[m.length][n.length];
+};
+
+export { isInterleaved, topDown, bottomUp };
