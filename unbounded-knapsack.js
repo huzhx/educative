@@ -51,4 +51,27 @@ class Item {
   }
 }
 
-export { getMaxProfitCombination };
+const topDown = (items, weights, profits, capacity) => {
+  const memo = [];
+  return helper(items, 0, capacity);
+
+  function helper(items, curIndex, capacity) {
+    if (capacity === 0 || curIndex === items.length) return 0;
+
+    memo[curIndex] = memo[curIndex] || [];
+    if (typeof memo[curIndex][capacity] !== 'undefined') {
+      return memo[curIndex][capacity];
+    }
+
+    let option1 = -Infinity;
+    if (weights[curIndex] <= capacity) {
+      option1 = helper(items, curIndex, capacity - weights[curIndex]) + profits[curIndex];
+    }
+    const option2 = helper(items, curIndex + 1, capacity);
+
+    memo[curIndex][capacity] = Math.max(option1, option2);
+    return memo[curIndex][capacity];
+  }
+};
+
+export { getMaxProfitCombination, topDown };
