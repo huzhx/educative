@@ -17,4 +17,4 @@ const getPossibleWaysNumber = (stairsNumber) => {
   }
 };
 
-export default getPossibleWaysNumber;
+export { getPossibleWaysNumber };

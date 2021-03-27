@@ -1,4 +1,4 @@
-import getPossibleWaysNumber from './staircase';
+import { getPossibleWaysNumber } from './staircase';
 
 test('test1', () => {
   const stairsNumber = 3;
