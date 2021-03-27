@@ -34,4 +34,16 @@ const topDown = (stairsNumber) => {
   }
 };
 
-export { getPossibleWaysNumber, topDown };
+const bottomUp = (stairsNumber) => {
+  const dp = [0, 0, 0, 1];
+  let sum = 1;
+  for (let i = 1; i <= stairsNumber; i++) {
+    const pop = dp.shift();
+    sum -= pop;
+    dp.push(sum);
+    sum += sum;
+  }
+  return dp[3];
+};
+
+export { getPossibleWaysNumber, topDown, bottomUp };
