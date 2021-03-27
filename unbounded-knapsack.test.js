@@ -1,4 +1,4 @@
-import getMaxProfitCombination from './unbounded-knapsack';
+import { getMaxProfitCombination } from './unbounded-knapsack';
 
 test('test1', () => {
   const items = ['Apple', 'Orange', 'Melon'];

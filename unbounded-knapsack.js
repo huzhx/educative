@@ -51,4 +51,4 @@ class Item {
   }
 }
 
-export default getMaxProfitCombination;
+export { getMaxProfitCombination };
