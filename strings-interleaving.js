@@ -30,4 +30,4 @@ const isInterleaved = (m, n, p) => {
   }
 };
 
-export default isInterleaved;
+export { isInterleaved };

@@ -1,4 +1,4 @@
-import isInterleaved from './strings-interleaving';
+import { isInterleaved } from './strings-interleaving';
 
 test('test1', () => {
   const m = 'abd';
