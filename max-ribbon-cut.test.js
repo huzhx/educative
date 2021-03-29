@@ -1,4 +1,4 @@
-import getMaxPiecesNumber from './max-ribbon-cut';
+import { getMaxPiecesNumber } from './max-ribbon-cut';
 
 test('test1', () => {
   const length = 5;

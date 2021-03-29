@@ -30,4 +30,4 @@ const getMaxPiecesNumber = (length, lengths) => {
   }
 };
 
-export default getMaxPiecesNumber;
+export { getMaxPiecesNumber };
