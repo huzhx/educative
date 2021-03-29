@@ -54,4 +54,28 @@ const topDown = (length, lengths) => {
   }
 };
 
-export { getMaxPiecesNumber, topDown };
+const bottomUp = (length, lengths) => {
+  const dp = new Array(lengths.length).fill(null).map((_) => new Array(length + 1).fill(-Infinity));
+
+  for (let i = 0; i < lengths.length; i++) {
+    dp[i][0] = 0;
+  }
+
+  for (let i = 0; i < lengths.length; i++) {
+    for (let l = 1; l <= length; l++) {
+      let count1 = -Infinity;
+      let count2 = -Infinity;
+      if (lengths[i] <= l) {
+        count1 = 1 + dp[i][l - lengths[i]];
+      }
+      if (i > 0) {
+        count2 = dp[i - 1][l];
+      }
+      dp[i][l] = Math.max(count1, count2);
+    }
+  }
+
+  return dp[lengths.length - 1][length] === -Infinity ? -1 : dp[lengths.length - 1][length];
+};
+
+export { getMaxPiecesNumber, topDown, bottomUp };
