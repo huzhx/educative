@@ -21,4 +21,4 @@ const getMinDeletes = (input) => {
   }
 };
 
-export default getMinDeletes;
+export { getMinDeletes };
