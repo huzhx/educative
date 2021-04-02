@@ -28,4 +28,28 @@ const getMaxProfit = (lengths, prices, rodLength) => {
   }
 };
 
-export { getMaxProfit };
+const topDown = (lengths, prices, rodLength) => {
+  const memo = [];
+  return helper(lengths, 0, rodLength);
+
+  function helper(lengths, curIndex, rodLength) {
+    if (rodLength === 0) return 0;
+    if (curIndex >= lengths.length) return -Infinity;
+
+    memo[curIndex] = memo[curIndex] || [];
+    if (typeof memo[curIndex][rodLength] !== 'undefined') {
+      return memo[curIndex][rodLength];
+    }
+
+    let profit1 = -Infinity;
+    if (lengths[curIndex] <= rodLength) {
+      profit1 = prices[curIndex] + helper(lengths, curIndex, rodLength - lengths[curIndex]);
+    }
+    const profit2 = helper(lengths, curIndex + 1, rodLength);
+
+    memo[curIndex][rodLength] = Math.max(profit1, profit2);
+    return memo[curIndex][rodLength];
+  }
+};
+
+export { getMaxProfit, topDown };
