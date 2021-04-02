@@ -28,4 +28,4 @@ const getMaxProfit = (lengths, prices, rodLength) => {
   }
 };
 
-export default getMaxProfit;
+export { getMaxProfit };

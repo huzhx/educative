@@ -1,4 +1,4 @@
-import getMaxProfit from './rod-cutting';
+import { getMaxProfit } from './rod-cutting';
 
 test('test1', () => {
   const lengths = [1, 2, 3, 4, 5];
