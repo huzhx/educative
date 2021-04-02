@@ -1,4 +1,4 @@
-import getMaxMoney from './house-thief';
+import { getMaxMoney } from './house-thief';
 
 test('test1', () => {
   const input = [2, 5, 1, 3, 6, 2, 4];

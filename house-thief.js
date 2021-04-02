@@ -18,4 +18,4 @@ const getMaxMoney = (input) => {
   }
 };
 
-export default getMaxMoney;
+export { getMaxMoney };
