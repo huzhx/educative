@@ -41,4 +41,15 @@ const topDown = (houses) => {
   }
 };
 
-export { getMaxMoney, topDown };
+const bottomUp = (houses) => {
+  const dp = new Array(houses.length + 1).fill(0);
+  dp[1] = houses[0];
+
+  for (let i = 1; i < houses.length; i++) {
+    dp[i + 1] = Math.max(houses[i] + dp[i - 1], dp[i]);
+  }
+
+  return dp[houses.length];
+};
+
+export { getMaxMoney, topDown, bottomUp };
