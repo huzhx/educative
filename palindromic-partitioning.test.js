@@ -1,4 +1,4 @@
-import findMPPCuts from './palindromic-partitioning';
+import { findMPPCuts } from './palindromic-partitioning';
 
 test('test1', () => {
   const string = 'abdbca';

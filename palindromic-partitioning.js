@@ -33,4 +33,4 @@ const findMPPCuts = (string) => {
   }
 };
 
-export default findMPPCuts;
+export { findMPPCuts };
