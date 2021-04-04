@@ -33,4 +33,51 @@ const findMPPCuts = (string) => {
   }
 };
 
-export { findMPPCuts };
+const topDown = (string) => {
+  const memo = [];
+  return findCuts(string, 0, string.length - 1);
+
+  function findCuts(string, start, end) {
+    if (start >= end || isPalindrome(string, start, end)) {
+      return 0;
+    }
+
+    let min = end - start;
+    for (let i = start; i <= end; i++) {
+      if (isPalindrome(string, start, i)) {
+        min = Math.min(min, 1 + findCuts(string, i + 1, end));
+      }
+    }
+
+    return min;
+  }
+
+  function isPalindrome(string, start, end) {
+    memo[start] = memo[start] || [];
+    if (typeof memo[start][end] !== 'undefined') {
+      return memo[start][end];
+    }
+
+    let i = start;
+    let j = end;
+
+    while (i < j) {
+      if (string[i] !== string[j]) {
+        memo[start][end] = false;
+        return memo[start][end];
+      }
+      i++;
+      j--;
+      memo[i] = memo[i] || [];
+      if (typeof memo[i][j] !== 'undefined') {
+        memo[start][end] = memo[i][j];
+        return memo[start][end];
+      }
+    }
+
+    memo[start][end] = true;
+    return memo[start][end];
+  }
+};
+
+export { findMPPCuts, topDown };
