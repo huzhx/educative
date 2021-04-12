@@ -7,13 +7,8 @@ const addIntegers = (head1, head2) => {
 
   while (cur1 && cur2) {
     let curSum = cur1.val + cur2.val + carrier;
-    if (curSum > 9) {
-      carrier = 1;
-      curSum %= 10;
-    } else {
-      carrier = 0;
-    }
-    cur.next = new ListNode(curSum);
+    carrier = Math.floor(curSum / 10);
+    cur.next = new ListNode(curSum % 10);
     cur1 = cur1.next;
     cur2 = cur2.next;
     cur = cur.next;
@@ -21,26 +16,16 @@ const addIntegers = (head1, head2) => {
 
   while (cur1) {
     let curSum = cur1.val + carrier;
-    if (curSum > 9) {
-      carrier = 1;
-      curSum %= 10;
-    } else {
-      carrier = 0;
-    }
-    cur.next = new ListNode(curSum);
+    carrier = Math.floor(curSum / 10);
+    cur.next = new ListNode(curSum % 10);
     cur1 = cur1.next;
     cur = cur.next;
   }
 
   while (cur2) {
     let curSum = cur2.val + carrier;
-    if (curSum > 9) {
-      carrier = 1;
-      curSum %= 10;
-    } else {
-      carrier = 0;
-    }
-    cur.next = new ListNode(curSum);
+    carrier = Math.floor(curSum / 10);
+    cur.next = new ListNode(curSum % 10);
     cur2 = cur2.next;
     cur = cur.next;
   }
